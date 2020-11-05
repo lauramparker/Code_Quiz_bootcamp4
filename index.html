@@ -18,13 +18,30 @@
     </nav>
 
 
+    <!--container with Start Quiz button (will disappear after click)-->
+    
+    <div class= "container m-4 mx-auto" id="startContainer"> <!--#startContainer-->
+        <div class="row">
+            <div class="col text-center">
+                <h5>Welcome!</h5>
+                <button id="startButton">Start Quiz</button> 
+            </div>
+        </div>
+    </div>
+    
 
-    <div class="row">
-        <div class="col">
-            
-                   
-                     
-                </div>
+    <!--container with Quiz Questions (dynamically changes in JS). Will APPEAR after startButton is clicked-->
+
+    <div class= "container m-3 mx-auto" id="quizContainer"> <!--#quizContainer-->
+        <div class="row">
+            <div class="col" id="quizQuestion"> <!--#quizQuestion. JS calls this id and replaces the text content-->
+                <h5>This is the first question.</h5>
+                <div class="nl" id="quizAnswers">
+                    <li id="choice1"></li>
+                    <li id="choice2"></li>
+                    <li id="choice3"></li>
+                    <li id="choice4"></li>
+                </div>                  
             </div>
         </div>
     </div> 
@@ -32,14 +49,7 @@
 
     <div class="row">
         <div class="col">
-            <div class = "container, px-3">
-                <div class="row">
-                    <div class="col">
-                        <button id="startButton">Start Quiz</button> 
-                    </div>
-                </div>
-
-            </div>
+            
         </div>
     </div>
     
