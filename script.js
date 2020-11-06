@@ -15,26 +15,7 @@
       
     
     //question & answer variables
-    var arrayQuestion = [
-        "Commonly used data types DO NOT include:",
-        "The condition in an if / else statement is enclosed within____.",
-        "Arrays in JavaScript can be used to store____",
-        "String values must be encolsed within____ when being assigned to variables.",
-        "A very useful tool used during development and debugging for printing content to the debugger is:",
-    ];
-    
-    //var question1Choices = ["strings","booleans","alerts","numbers"];
-
-   // var question2Choices = ["quotes","curly brackets","parenthesis","square brackets"];
-
-    //var question3Choices = ["numbers and strings","other arrays","booleans","all of the above"];
-
-    //var question4Choices = ["commas","curly brackets","quotes","parenthesis"];
-
-   // var question5Choices = ["JavaScript","terminal/bash","for loops","console.log"];
-
-
-    var firstquestion= {
+        var firstQuestion= {
         question: "Commonly used data types DO NOT include:",
         choiceone: "strings",
         choicetwo: "booleans",
@@ -42,6 +23,44 @@
         choicefour: "numbers",
         correctchoice: "alerts",
     };
+
+    var secondQuestion= {
+        question:  "The condition in an if / else statement is enclosed within____.",
+        choiceone: "quotes",
+        choicetwo: "curly brackets",
+        choicethree: "parenthesis",
+        choicefour: "square brackets",
+        correctchoice: "curly brackets",
+    };
+
+    var thirdQuestion= {
+        question:  "Arrays in JavaScript can be used to store____",
+        choiceone: "numbers and strings",
+        choicetwo: "other arrays",
+        choicethree: "booleans",
+        choicefour: "all of the above",
+        correctchoice: "all of the above",
+    };
+
+    var fourthQuestion= {
+        question:  "String values must be enclosed within____ when being assigned to variables.",
+        choiceone: "commas",
+        choicetwo: "curly brackets",
+        choicethree: "quotes",
+        choicefour: "parenthesis",
+        correctchoice: "parenthesis",
+    };
+
+    var fifthQuestion= {
+        question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+        choiceone: "JavaScript",
+        choicetwo: "terminal/bash",
+        choicethree: "for loops",
+        choicefour: "console.log",
+        correctchoice: "console.log",
+    };
+
+
     
 //FUNCTIONS
     
@@ -69,48 +88,64 @@ function startGame () {
 };
 
 
- 
-// Append choice buttons to document
-
-
-function makeChoiceButtons(choicesArray) {
-                
-    var choice1=document.createElement("button");
-       // document.getElementById("first").appendChild(choice1);
-        choice1.innerHTML=choicesArray[0];  //make questions object sets and combine all choice buttons, questions, answer choices into one function for setting the question?
-                
-                var choice2=document.createElement("button");
-                    //document.getElementById("second").appendChild(choice2);
-                    choice2.innerHTML=choicesArray[1];
-                
-                var choice3=document.createElement("button");
-                    //document.getElementById("third").appendChild(choice3);
-                    choice3.innerHTML=choicesArray[2];
-                
-                var choice4=document.createElement("button");
-                   // document.getElementById("fourth").appendChild(choice4);
-                    choice4.innerHTML=choicesArray[3];
-
-            };
-
-
 // Start displaying questions after Start Quiz is clicked
 
 function displayQuestion() {
 
     var questionEl= document.getElementById("quizQuestion");
-      for (let i=0; i<arrayQuestion.length; i++) {
-           questionEl.textContent=arrayQuestion(0);
-        };
+           questionEl.innerHTML=this.question;
 
 };
 
 
+// Display and append answer choice buttons
+
+function makeChoiceButtons() { //use question objects to populate
+                
+    var choice1=document.createElement("button");
+        document.getElementById("first").appendChild(choice1);
+        choice1.innerHTML=this.choiceone;  
+                
+    var choice2=document.createElement("button");
+        document.getElementById("second").appendChild(choice2);
+        choice2.innerHTML=this.choicetwo;
+                
+    var choice3=document.createElement("button");
+        document.getElementById("third").appendChild(choice3);
+        choice3.innerHTML=this.choicethree;
+                
+    var choice4=document.createElement("button");
+        document.getElementById("fourth").appendChild(choice4);
+        choice4.innerHTML=this.choicefour;
+
+};
 
 
-//function startQuestions () {  
-    
-  
+// Confirm user answer choice. Subtract time if wrong; Add point if right
+
+function confirmAnswer() {
+
+    var userAnswer = //button that was clicked;
+
+        if (userAnswer == this.correctchoice) {
+            alert="Correct!";
+            //and add a point to the score
+        } else {
+            alert="Wrong!"
+            //and subtract time from timer
+
+        };
+
+}
+
+
+function runGame() {
+
+    displayQuestion.call(this);
+    makeChoiceButtons.call(this);
+    confirmAnswer(this);
+
+}
 
 
 
@@ -139,12 +174,6 @@ function endGame () {
     //User's highest score is reflected in the highest scores table
 
     
-    //User clicks start button
-    //startButton.addEventListener("click", countDown); //starts game with countdown clock
-        //start Container disappears after Start button clicked
-        //question Container appears after Start button clicked
-
-
     //Quiz Questions are displayed with 4 answer choices    
     //User answers questions
     //Incorrect questions subtract time from clock
@@ -153,18 +182,24 @@ function endGame () {
 
 
 startButton.addEventListener("click", startGame); 
-startButton.addEventListener("click", makeChoiceButtons);
-startButton.addEventListener("click", displayQuestion);
 
 
+makeChoiceButtons.call(firstQuestion);
+displayQuestion.call(firstQuestion);
+confirmAnswer(firstQuestion);
 
-function setQuestion() {
+makeChoiceButtons.call(secondQuestion);
+displayQuestion.call(secondQuestion);
+confirmAnswer(secondQuestion);
 
-    var questionEl= document.getElementById("quizQuestion");
-        questionEl.innerHTML=[firstquestion,question];
+makeChoiceButtons.call(thirdQuestion);
+displayQuestion.call(thirdQuestion);
+confirmAnswer(thirdQuestion);
 
+makeChoiceButtons.call(fourthQuestion);
+displayQuestion.call(fourthQuestion);
+confirmAnswer(fourthQuestion);
 
-};
-
-setQuestion();
+makeChoiceButtons.call(fifthQuestion);
+displayQuestion.call(fifthQuestion);
 
