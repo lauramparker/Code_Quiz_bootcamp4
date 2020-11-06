@@ -34,15 +34,17 @@
 
     <!--container with Quiz Questions (dynamically changes in JS). Will APPEAR after startButton is clicked-->
 
-    <div class= "container m-3 mx-auto" id="quizContainer"> <!--#quizContainer-->
+    <div class= "container m-3 mx-auto"> <!--#quizContainer-->
         <div class="row">
-            <div class="col" id="quizQuestion"> <!--#quizQuestion. JS calls this id and replaces the text content-->
-                <h5>Want to play the game?</h5>
-                <div class="nl" id="quizAnswers">
-                    <li id="choice1"></li>
-                    <li id="choice2"></li>
-                    <li id="choice3"></li>
-                    <li id="choice4"></li>
+            <div class="col mx-auto"> <!--#quizQuestion. JS calls this id and replaces the text content-->
+                <h4 class="text-center" id="quizQuestion"><strong>Coding Quiz Challenge</strong></h4>
+                <p class="text-center" id="instructions">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score Time by ten seconds!</p>
+                <ol id=answerList>
+                    <li id="first"></li>
+                    <li id="second"></li>
+                    <li id="third"></li>
+                    <li id="fourth"></li>
+                   
                 </div>                  
             </div>
         </div>
