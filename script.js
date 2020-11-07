@@ -94,9 +94,7 @@ function startGame () {
 
     }, 1000);
 
-    if (totalSeconds ===0) {
-        endGame();
-    };
+   
   
 };
 
@@ -117,45 +115,71 @@ function makeChoiceButtons() { //use question objects to populate. var or let or
                 
     choice1=document.createElement("button");
         document.getElementById("first").appendChild(choice1);
-        choice1.textContent=firstQuestion.choiceone;  
+       // choice1.textContent=firstQuestion.choiceone;  
                 
     choice2=document.createElement("button");
         document.getElementById("second").appendChild(choice2);
-        choice2.textContent=firstQuestion.choicetwo;
+      //  choice2.textContent=firstQuestion.choicetwo;
                 
     choice3=document.createElement("button");
         document.getElementById("third").appendChild(choice3);
-        choice3.textContent=firstQuestion.choicethree;
+      //  choice3.textContent=firstQuestion.choicethree;
                 
     choice4=document.createElement("button");
         document.getElementById("fourth").appendChild(choice4);
-        choice4.textContent=firstQuestion.choicefour;
+       // choice4.textContent=firstQuestion.choicefour;
+
+    displayChoices(firstQuestion);
 
 };
 
+//displays the Answer Choices
 
-function displayChoices() {
+function displayChoices(questionObject) {  
 
-    choice1.textContent=this.choiceone;  
+    choice1.textContent=questionObject.choiceone;  
             
-    choice2.innerHTML=this.choicetwo;
+    choice2.textContent=questionObject.choicetwo;
             
-    choice3.innerHTML=this.choicethree;
+    choice3.textContent=questionObject.choicethree;
             
-    choice4.innerHTML=this.choicefour;
+    choice4.textContent=questionObject.choicefour;
 
-    //add for i loop to assign the data attribute of correct??
+    
+    //need to assign the data-attribute" correct to the correct answer choice
+ 
+        if (choiceone === correctchoice) {
+            choiceone.setAttribute(data-correct, true)
+        }
+            else {
+                if (choicetwo === correctchoice) {
+                    choicetwo.setAttribute(data-correct, true)
+            }
+                else {
+                    if (choicethree === correctchoice) {
+                        choicethree.setAttribute(data-correct, true)
+                }
+                    else{
+                        choicefour.setAttribute(data-correct, true)
+                    };
+
+        };
 
 };
 
 
 //this function interprets the answer choice and sends to wrongAnswer or rightAnswer functions
-function readAnswers() { 
-        
-    var correctAnswer=this.getAttribute('data-correct');
-    if (correctAnswer.onclick){
-        rightAnswer();
-    };
+function readAnswers(questionObject) { 
+  
+   data-correct.onclick=rightAnswer();
+   
+   data-incorrect.onclick=wrongAnswer();
+
+  //var correctAnswer=questionObject.correctchoice;  //I could set a data-attribute here to read
+   
+  //if (correctAnswer.onclick){
+    // rightAnswer();
+   // };
     //if ()///////
 };
 
@@ -190,7 +214,7 @@ function endGame(userScore) {
 
     // NEED TO INPUT USER Initials with SUbmit form (prevent defualt) & userTurns... CALL function High scores
 
-}
+};
 
 
 
@@ -227,7 +251,26 @@ startButton.addEventListener("click", startGame);
 
 startButton.addEventListener("click", makeChoiceButtons); 
 
-startButton.addEventListener("click", displayQuestion,thirdQuestion);
+startButton.addEventListener("click", function() {displayQuestion(firstQuestion)});
+
+
+while (totalSeconds > 0) {
+
+    quizContainer.addEventListener("click", readAnswers);
+
+    if (totalSeconds ===0) { //Or LESS than zero (since we can subtract 10)
+        endGame();
+    };
+
+    
+
+//}
+
+    
+
+
+
+//startButton.addEventListener("click", displayQuestion,thirdQuestion);
 
 //document.getElementById("quizContainer").addEventListener("click", displayChoices.call(secondQuestion));
 
@@ -239,6 +282,7 @@ startButton.addEventListener("click", displayQuestion,thirdQuestion);
 //document.querySelectorAll("li").click(displayQuestion.call(secondQuestion)); //does this need the parent node?? query selector not working
 
 
+//thirdQuestion.displayQuestion()
 
   //  choice1.onclick = wrongAnswer;
     //choice2.onclick = wrongAnswer;
@@ -261,4 +305,3 @@ startButton.addEventListener("click", displayQuestion,thirdQuestion);
 
 //makeChoiceButtons.call(fifthQuestion);
 //displayQuestion.call(fifthQuestion);
-
