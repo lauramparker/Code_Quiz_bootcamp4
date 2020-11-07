@@ -77,9 +77,9 @@
        
 function startGame () {    
     
-    document.getElementById("startButton").style.display="none";   //makes start button disappear
-    document.getElementById("welcome").style.display="none";
-    document.getElementById("instructions").style.display="none";   //makes welcome message disappear
+    document.getElementById("startButton").style.visibility="hidden";   //hides start button
+    document.getElementById("welcome").style.visibility="hidden";
+    document.getElementById("instructions").style.visibility="hidden";   //hides welcome message, but element still there
 
     //var countDown, set Interval function() //Countdown function. calls setInterval function and then displays seconds remaining 
 
@@ -103,10 +103,10 @@ function startGame () {
 
 // Start displaying questions after Start Quiz is clicked
 
-function displayQuestion() {
+function displayQuestion(questionObject) {
     
     var questionEl= document.getElementById("quizQuestion");
-           questionEl.innerHTML=this.question;
+           questionEl.textContent=questionObject.question;
 
 };
 
@@ -117,26 +117,26 @@ function makeChoiceButtons() { //use question objects to populate. var or let or
                 
     choice1=document.createElement("button");
         document.getElementById("first").appendChild(choice1);
-        choice1.innerHTML=firstQuestion.choiceone;  
+        choice1.textContent=firstQuestion.choiceone;  
                 
     choice2=document.createElement("button");
         document.getElementById("second").appendChild(choice2);
-        choice2.innerHTML=firstQuestion.choicetwo;
+        choice2.textContent=firstQuestion.choicetwo;
                 
     choice3=document.createElement("button");
         document.getElementById("third").appendChild(choice3);
-        choice3.innerHTML=firstQuestion.choicethree;
+        choice3.textContent=firstQuestion.choicethree;
                 
     choice4=document.createElement("button");
         document.getElementById("fourth").appendChild(choice4);
-        choice4.innerHTML=firstQuestion.choicefour;
+        choice4.textContent=firstQuestion.choicefour;
 
 };
 
 
 function displayChoices() {
 
-    choice1.innerHTML=this.choiceone;  
+    choice1.textContent=this.choiceone;  
             
     choice2.innerHTML=this.choicetwo;
             
@@ -179,59 +179,64 @@ function rightAnswer() {
 
 };
 
+function endGame(userScore) {
 
-// function endGame..calls 3) function storeScores and 4) displayEnd
+    var done = document.getElementById("welcome").style.visibility="initial";
+    var message = document.getElementById("instructions").style.visibility="initial";
+    done.textContent= "All done!";
+    message.textContent= "Your final score is" + userScore;
 
-function endGame () {
+    storeScores (userScore);
+
+    // NEED TO INPUT USER Initials with SUbmit form (prevent defualt) & userTurns... CALL function High scores
+
+}
+
+
+
+
+
+// stores top scores to local storage
+
+function storeScores (userScore, userTurns) {
    
-    var userScore = localStorage.getItem("scores");
+   var storeScore = localStorage.getItem("topScore"); //this should be an object key user:score
     
-    alert="Game Over";
+    if (userTurns === null) { 
+        storeScore = userScore;
 
-    localStorage.setItem("scores", userScore);
-
+    } else {
+        if (userScore > topScore) {
+            storeScore === userScore;
+        } else {
+            storeScore === topScore
+        };
+    };
+   
+    localStorage.setItem("topScore", storeScore);
     
-    // reset??
     
 };   
 
 
 
-//3) function storeScore
-     
-//function storeScores () {
-
-   // };
-
-
-    
-   
-
 //EVENTS
     
-    //User enters name or player id
-    //User stores score on local storage
-    //User's highest score is reflected in the highest scores table
-
-    
-    //Quiz Questions are displayed with 4 answer choices    
-    //User answers questions
-    //Incorrect questions subtract time from clock
-    //When last question is answered, game is over
-    //When clock hits 0, game is over
-
 
 startButton.addEventListener("click", startGame); 
-startButton.addEventListener("click", makeChoiceButtons); 
-startButton.addEventListener("click", displayQuestion.call(firstQuestion));
 
-//document.getElementById("answerList").addEventListener("click", displayChoices(secondQuestion));
+startButton.addEventListener("click", makeChoiceButtons); 
+
+startButton.addEventListener("click", displayQuestion,thirdQuestion);
+
+//document.getElementById("quizContainer").addEventListener("click", displayChoices.call(secondQuestion));
 
 //document.getElementById("startButton").onclick = displayQuestion.call(firstQuestion); 
 //document.getElementById("startButton").onclick = displayChoices.call(firstQuestion);
 
+//answerList.addEventListener("click", displayQuestion.call(secondQuestion));
 
-document.querySelectorAll("li").click(displayChoices(secondQuestion)); //does this need the parent node??
+//document.querySelectorAll("li").click(displayQuestion.call(secondQuestion)); //does this need the parent node?? query selector not working
 
 
 
@@ -242,18 +247,18 @@ document.querySelectorAll("li").click(displayChoices(secondQuestion)); //does th
 
     
 
-makeChoiceButtons.call(secondQuestion);
-displayQuestion.call(secondQuestion);
+//makeChoiceButtons.call(secondQuestion);
+//displayQuestion.call(secondQuestion);
 
 
-makeChoiceButtons.call(thirdQuestion);
-displayQuestion.call(thirdQuestion);
+//makeChoiceButtons.call(thirdQuestion);
+//displayQuestion.call(thirdQuestion);
 
 
-makeChoiceButtons.call(fourthQuestion);
-displayQuestion.call(fourthQuestion);
+//makeChoiceButtons.call(fourthQuestion);
+//displayQuestion.call(fourthQuestion);
 
 
-makeChoiceButtons.call(fifthQuestion);
-displayQuestion.call(fifthQuestion);
+//makeChoiceButtons.call(fifthQuestion);
+//displayQuestion.call(fifthQuestion);
 
