@@ -129,6 +129,7 @@ function makeChoiceButtons() { //use question objects to populate. var or let or
         document.getElementById("fourth").appendChild(choice4);
        // choice4.textContent=firstQuestion.choicefour;
 
+    displayQuestion(firstQuestion);
     displayChoices(firstQuestion);
 
 };
@@ -145,7 +146,6 @@ function displayChoices(questionObject) {
             
     choice4.textContent=questionObject.choicefour;
 
-    
     //need to assign the data-attribute" correct to the correct answer choice
  
         if (choiceone === correctchoice) {
@@ -169,20 +169,14 @@ function displayChoices(questionObject) {
 
 
 //this function interprets the answer choice and sends to wrongAnswer or rightAnswer functions
-function readAnswers(questionObject) { 
+
+//function readAnswers(questionObject) { 
   
-   data-correct.onclick=rightAnswer();
-   
-   data-incorrect.onclick=wrongAnswer();
+  //questionObject.getAttribute(data-correct).onclick=rightAnswer();
 
-  //var correctAnswer=questionObject.correctchoice;  //I could set a data-attribute here to read
-   
-  //if (correctAnswer.onclick){
-    // rightAnswer();
-   // };
-    //if ()///////
+  //questionObject.getAttribute(data-correct).onclick=rightAnswer();
+
 };
-
 
 
 // Alert wrong answer choice. Subtract time if wrong;
@@ -251,16 +245,16 @@ startButton.addEventListener("click", startGame);
 
 startButton.addEventListener("click", makeChoiceButtons); 
 
-startButton.addEventListener("click", function() {displayQuestion(firstQuestion)});
+//startButton.addEventListener("click", function() {displayQuestion(firstQuestion)});
 
 
-while (totalSeconds > 0) {
+//while (totalSeconds > 0) {
 
-    quizContainer.addEventListener("click", readAnswers);
+  //  quizContainer.addEventListener("click", readAnswers);
 
-    if (totalSeconds ===0) { //Or LESS than zero (since we can subtract 10)
-        endGame();
-    };
+    //if (totalSeconds ===0) { //Or LESS than zero (since we can subtract 10)
+      //  endGame();
+    //};
 
     
 
@@ -272,7 +266,7 @@ while (totalSeconds > 0) {
 
 //startButton.addEventListener("click", displayQuestion,thirdQuestion);
 
-//document.getElementById("quizContainer").addEventListener("click", displayChoices.call(secondQuestion));
+document.getElementById("quizContainer").addEventListener("click", displayChoices.call(secondQuestion));
 
 //document.getElementById("startButton").onclick = displayQuestion.call(firstQuestion); 
 //document.getElementById("startButton").onclick = displayChoices.call(firstQuestion);
@@ -280,14 +274,6 @@ while (totalSeconds > 0) {
 //answerList.addEventListener("click", displayQuestion.call(secondQuestion));
 
 //document.querySelectorAll("li").click(displayQuestion.call(secondQuestion)); //does this need the parent node?? query selector not working
-
-
-//thirdQuestion.displayQuestion()
-
-  //  choice1.onclick = wrongAnswer;
-    //choice2.onclick = wrongAnswer;
-   // choice3.onclick = rightAnswer;
-   // choice4.onclick = wrongAnswer;
 
     
 
