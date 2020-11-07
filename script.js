@@ -4,8 +4,11 @@
 
     //general navigation assignments
     var startButton = document.getElementById("startButton");   //startbutton in html/css
-    var nextButton = document.querySelector ("#nextButton");   //nextbutton toggles? to next question
-    var viewHighScores = document.querySelector ("#scoresButton");   //view highscores button
+    var answerList = document.getElementById("answerList");   //ordered list for answer choices
+    var viewHighScores = document.getElementById("scoresButton");   //view highscores button
+    var userAnswer = null;
+    var userScore = 0;
+
 
     
     //timer variables
@@ -15,7 +18,13 @@
       
     
     //question & answer variables
-        var firstQuestion= {
+    var choice1; //global variables to use in multiple answer choice functions (makeChoiceButtons & displayChoices)
+    var choice2;
+    var choice3;
+    var choice4;
+
+
+    var firstQuestion= {
         question: "Commonly used data types DO NOT include:",
         choiceone: "strings",
         choicetwo: "booleans",
@@ -84,6 +93,10 @@ function startGame () {
         }
 
     }, 1000);
+
+    if (totalSeconds ===0) {
+        endGame();
+    };
   
 };
 
@@ -91,7 +104,7 @@ function startGame () {
 // Start displaying questions after Start Quiz is clicked
 
 function displayQuestion() {
-
+    
     var questionEl= document.getElementById("quizQuestion");
            questionEl.innerHTML=this.question;
 
@@ -100,68 +113,95 @@ function displayQuestion() {
 
 // Display and append answer choice buttons
 
-function makeChoiceButtons() { //use question objects to populate
+function makeChoiceButtons() { //use question objects to populate. var or let or const??
                 
-    var choice1=document.createElement("button");
+    choice1=document.createElement("button");
         document.getElementById("first").appendChild(choice1);
-        choice1.innerHTML=this.choiceone;  
+        choice1.innerHTML=firstQuestion.choiceone;  
                 
-    var choice2=document.createElement("button");
+    choice2=document.createElement("button");
         document.getElementById("second").appendChild(choice2);
-        choice2.innerHTML=this.choicetwo;
+        choice2.innerHTML=firstQuestion.choicetwo;
                 
-    var choice3=document.createElement("button");
+    choice3=document.createElement("button");
         document.getElementById("third").appendChild(choice3);
-        choice3.innerHTML=this.choicethree;
+        choice3.innerHTML=firstQuestion.choicethree;
                 
-    var choice4=document.createElement("button");
+    choice4=document.createElement("button");
         document.getElementById("fourth").appendChild(choice4);
-        choice4.innerHTML=this.choicefour;
+        choice4.innerHTML=firstQuestion.choicefour;
 
 };
 
 
-// Confirm user answer choice. Subtract time if wrong; Add point if right
+function displayChoices() {
 
-function confirmAnswer() {
+    choice1.innerHTML=this.choiceone;  
+            
+    choice2.innerHTML=this.choicetwo;
+            
+    choice3.innerHTML=this.choicethree;
+            
+    choice4.innerHTML=this.choicefour;
 
-    var userAnswer = //button that was clicked;
+    //add for i loop to assign the data attribute of correct??
 
-        if (userAnswer == this.correctchoice) {
-            alert="Correct!";
-            //and add a point to the score
-        } else {
-            alert="Wrong!"
-            //and subtract time from timer
-
-        };
-
-}
+};
 
 
-function runGame() {
+//this function interprets the answer choice and sends to wrongAnswer or rightAnswer functions
+function readAnswers() { 
+        
+    var correctAnswer=this.getAttribute('data-correct');
+    if (correctAnswer.onclick){
+        rightAnswer();
+    };
+    //if ()///////
+};
 
-    displayQuestion.call(this);
-    makeChoiceButtons.call(this);
-    confirmAnswer(this);
-
-}
 
 
+// Alert wrong answer choice. Subtract time if wrong;
+
+function wrongAnswer() {
+    alert="Wrong!";
+    totalSeconds=totalSeconds-10; //and subtract time from timer
+
+};
+
+
+// Alert right answer choice. Add to user score;
+
+function rightAnswer() {
+    alert="Correct!";
+    userScore++;
+    //and add a point to the score
+
+};
 
 
 // function endGame..calls 3) function storeScores and 4) displayEnd
 
 function endGame () {
-    alert="Oh no! Out of time, game over.";
+   
+    var userScore = localStorage.getItem("scores");
+    
+    alert="Game Over";
+
+    localStorage.setItem("scores", userScore);
+
+    
+    // reset??
+    
 };   
 
 
-    //3) function storeScore
-     
-    function storeScores () {
 
-    };
+//3) function storeScore
+     
+//function storeScores () {
+
+   // };
 
 
     
@@ -182,23 +222,37 @@ function endGame () {
 
 
 startButton.addEventListener("click", startGame); 
+startButton.addEventListener("click", makeChoiceButtons); 
+startButton.addEventListener("click", displayQuestion.call(firstQuestion));
+
+//document.getElementById("answerList").addEventListener("click", displayChoices(secondQuestion));
+
+//document.getElementById("startButton").onclick = displayQuestion.call(firstQuestion); 
+//document.getElementById("startButton").onclick = displayChoices.call(firstQuestion);
 
 
-makeChoiceButtons.call(firstQuestion);
-displayQuestion.call(firstQuestion);
-confirmAnswer(firstQuestion);
+document.querySelectorAll("li").click(displayChoices(secondQuestion)); //does this need the parent node??
+
+
+
+  //  choice1.onclick = wrongAnswer;
+    //choice2.onclick = wrongAnswer;
+   // choice3.onclick = rightAnswer;
+   // choice4.onclick = wrongAnswer;
+
+    
 
 makeChoiceButtons.call(secondQuestion);
 displayQuestion.call(secondQuestion);
-confirmAnswer(secondQuestion);
+
 
 makeChoiceButtons.call(thirdQuestion);
 displayQuestion.call(thirdQuestion);
-confirmAnswer(thirdQuestion);
+
 
 makeChoiceButtons.call(fourthQuestion);
 displayQuestion.call(fourthQuestion);
-confirmAnswer(fourthQuestion);
+
 
 makeChoiceButtons.call(fifthQuestion);
 displayQuestion.call(fifthQuestion);
