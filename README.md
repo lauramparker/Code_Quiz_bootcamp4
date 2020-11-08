@@ -6,30 +6,21 @@
 <h3>Description:</h3> 
     This project contains javascript and html functionality to present a 5 question multiple-choice quiz. The intent of the project is to provide working code that uses javascript to dynamically change the html, and thus the content on the page. It does this by changing the quesiton and answer choices presented after the user answers each question.   The project utilizes these elements and connects to a Bootstraped-enabled html file with basic styling.  The code includes several functions, objects (in an array), event listeners, and other intermediate-advanced javascript elements. 
     
-    When the user begins the quiz, a start button is presented to initiate the questions.  Each question is displatyed in a simple multiple choice format (see below).  At the end of the quiz the user can see a list of high scores and record their initials to have their highest score saved in the game.  A clear scores function is also available.
+    When the user begins the quiz, a start button is presented to initiate the questions.  A timer with 60 secods appears in the upper right corner and the clock starts ticking!  The user will lose 10 seconds when they answer an incorrect question. Each question is displayed in a simple multiple choice format (see below).  At the end of the quiz the user can see a list of high scores and record their initials to have their highest score saved in the game.  A clear scores function is also available.
 
 
 <h5>Partial Screenshots of User Experience</h5>
 
 <p>
-    <img src="/homework4screenshots/2.png" width="350" height="350" />
+    <img src="/PortfolioImages (1).png" width="350" height="350" />
 </p>
 
                
-<p> <img src="/readmeImage_2.png" width="350" height="350" />
+<p> <img src="/PortfolioImages.png" width="350" height="350" />
 </p>
 
     
-<p> <img src="/readmeImage_3.png" width="350" height="350" />
-</p>
 
-
-<p> <img src="/readmeImage_4.png" width="350" height="350" />
-</p>
-
-
-<p> <img src="/readmeImage_5.png" width="350" height="350" />
-</p>
 
 
 
