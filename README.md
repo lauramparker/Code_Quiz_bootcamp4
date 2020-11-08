@@ -12,24 +12,15 @@
 <h5>Partial Screenshots of User Experience</h5>
 
 <p>
-    <img src="/homework4screenshots/2.png" width="350" height="350" />
+    <img src="/PortfolioImages (1).png" width="350" height="350" />
 </p>
 
                
-<p> <img src="/readmeImage_2.png" width="350" height="350" />
+<p> <img src="/PortfolioImages.png" width="350" height="350" />
 </p>
 
     
-<p> <img src="/readmeImage_3.png" width="350" height="350" />
-</p>
 
-
-<p> <img src="/readmeImage_4.png" width="350" height="350" />
-</p>
-
-
-<p> <img src="/readmeImage_5.png" width="350" height="350" />
-</p>
 
 
 
