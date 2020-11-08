@@ -1,23 +1,18 @@
-# password-genderator_BootCamp2
+# Code_Quiz_BootCamp4
 
-<h3> Title: Random Password Generator</h3>
-<h5><i>With User Input</i></h5>
+<h3> Title: Code Quiz</h3>
+<h5><i>With Score Records</i></h5>
 
 <h3>Description:</h3> 
-    This project contains javascript functionality to generate a random password based on use input. The intent of the project is to provide working code that incorporates beginning javascript elements such as variables, arrays, for-loops, and functions.   The project utilizes these elements and connects to a Bootstraped-enabled html file with basic styling.  The code includes an event listener connected to a single button (so that code begins when the user clicks to button) 
+    This project contains javascript and html functionality to present a 5 question multiple-choice quiz. The intent of the project is to provide working code that uses javascript to dynamically change the html, and thus the content on the page. It does this by changing the quesiton and answer choices presented after the user answers each question.   The project utilizes these elements and connects to a Bootstraped-enabled html file with basic styling.  The code includes several functions, objects (in an array), event listeners, and other intermediate-advanced javascript elements. 
     
-    The code asks the user to input the following information before rendering a password:
+    When the user begins the quiz, a start button is presented to initiate the questions.  Each question is displatyed in a simple multiple choice format (see below).  At the end of the quiz the user can see a list of high scores and record their initials to have their highest score saved in the game.  A clear scores function is also available.
 
-        1) Sets password Length (between and including 8-128 characters)
-        2) Confirms if user wants to include uppercase letters in the final password
-        3) Confirms if user wants to include lowercase letters in the final password
-        4) Confirms if user wants to include numeric characters in the final password
-        5) Confirms if user wants to include special characters in the final password
 
 <h5>Partial Screenshots of User Experience</h5>
 
 <p>
-    <img src="/readmeImage_1.png" width="350" height="350" />
+    <img src="/homework4screenshots/2.png" width="350" height="350" />
 </p>
 
                
@@ -39,10 +34,10 @@
 
 
 <h3>Installation:</h3>
-    To run the development environment, clone the repository found at https://github.com/lparker78/password-generator_BootCamp3. Here you will find 3 html files (index.html, contact.html, portfolio.html) 
+    To run the development environment, clone the repository found at https://github.com/lparker78/Code_Quiz_bootCamp4. Here you will find the js file (script.js) and html file (index.html) needed.
 
 <h3>Usage:</h3>
-    Use this project as a beginner's example of javascript functionality.
+    Use this project as an intermediate example of javascript functionality.
 
 <h3>Credits:</h3> Laura Parker @lparker78 (author)
 
