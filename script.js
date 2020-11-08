@@ -96,7 +96,6 @@ function startGame () {
 
     }, 1000);
 
-   
   
 };
 
@@ -104,7 +103,7 @@ function startGame () {
 
 // Display and append answer choice buttons
 
-function makeChoiceButtons() { //use question objects to populate. var or let or const??
+function makeChoiceButtons() { 
                 
     choice1=document.createElement("button");
         document.getElementById("first").appendChild(choice1);
@@ -122,17 +121,19 @@ function makeChoiceButtons() { //use question objects to populate. var or let or
         document.getElementById("fourth").appendChild(choice4);
 
 
-
 };
 
 
 function runQuiz () {
 
+    var questionEl= document.getElementById("quizQuestion");
+
+    var questionBox= document.getElementById("quizContainer")
+
     for (let i=0; i<6; i++) {
 
-        var questionEl= document.getElementById("quizQuestion");
-
-                questionEl.textContent=allQuestionSets[i].question;
+        var rightAnswer= allQuestionSets[i].correctchoice;           
+        questionEl.textContent=allQuestionSets[i].question;
 
                 choice1.textContent=allQuestionSets[i].choiceone;  
                     
@@ -142,26 +143,25 @@ function runQuiz () {
                         
                 choice4.textContent=allQuestionSets[i].choicefour;
 
-              //  var rightAnswer= allQuestionSets[i].correctchoice;
-        
-            
-               
+                questionBox.addEventListener("click", function() {
+                    //checkAnswers();
+                });
+  
 
     };
 
 }; //end of runQuiz
 
+
+
 //this function interprets the answer choice and sends to wrongAnswer or rightAnswer functions
 
-function checkAnswers() { 
+//function checkAnswers(rightAnswer) { 
 
-    while (totalSeconds > 0) {
+    //while (totalSeconds > 0) {
 
-        for (let i=0; i<6; i++) {
-
-        
-        if (correctchoice.onclick=rightAnswer()
-        var answerEl= document.querySelectorAll("buttons");
+       // if (rightAnswer.onclick=rightAnswer()
+        //var answerEl= document.querySelectorAll("buttons"));
 
 
 
@@ -234,4 +234,3 @@ startButton.addEventListener("click", makeChoiceButtons);
 startButton.addEventListener("click", runQuiz); 
 
 //startButton.addEventListener("click", checkAnswers);
-
